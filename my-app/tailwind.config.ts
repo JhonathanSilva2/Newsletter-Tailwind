@@ -13,9 +13,19 @@ const config: Config = {
           claro:'#C5DFFF',
           escuro:'#061E3C',
           hover:'#0A2A5C',
-      }},
+        }
+      },
       fontFamily:{
         Dhurjati: ['Dhurjati', 'sans-serif']
+      },
+      keyframes: {
+        sino_kf:{
+          '0%, 100%':{transform:'rotate(-10deg)'},
+          '50%':{transform:'rotate(10deg)'},
+        }
+      },
+      animation:{
+        sino:'sino_kf 0.31s ease-in-out infinite'
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -26,4 +36,5 @@ const config: Config = {
   },
   plugins: [],
 }
+
 export default config
