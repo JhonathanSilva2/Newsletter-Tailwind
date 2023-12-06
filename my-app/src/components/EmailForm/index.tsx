@@ -1,5 +1,4 @@
 'use client'
-require('dotenv').config();
 import { useState } from "react";
 export default function EmailForm() {
     const [emailTO, setEmailTO] = useState('jhomjom@gmail.com')

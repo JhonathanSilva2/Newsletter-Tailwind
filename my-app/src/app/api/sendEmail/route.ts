@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 import { NextResponse } from 'next/server';
 import nodemailer, { TransportOptions } from 'nodemailer';
 
