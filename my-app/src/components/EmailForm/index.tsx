@@ -42,7 +42,9 @@ export default function EmailForm() {
             type="email"
             placeholder="Digite seu endereço de email"/>
             <button onClick={sendMail} className="font-bold text-white bg-azul-escuro w-full py-2 rounded-full shadow-2xl hover:bg-azul-hover duration-150" type="button">Inscreva-se</button>
-            <section className={`text-sm text-center text-lime-400 font-bold p-2 ${apiStauts?'block':'hidden'} `}>Email cadastrado com successo! </section>
+            <i>
+            <section className={`text-md text-center text-black font-bold p-2  justify-center items-center ${apiStauts?'flex':'hidden'} `}>Email cadastrado com <section className="text-lime-400 mx-2">sucesso</section>! </section>
+            </i>
         </form>
     )
 }
