@@ -1,7 +1,6 @@
-require('dotenv').config();
-
 import { NextResponse } from 'next/server';
-import nodemailer, { TransportOptions } from 'nodemailer';
+import nodemailer from 'nodemailer';
+import { TransportOptions } from 'nodemailer';
 
 export async function POST(req: any, res: any) {
     try {
