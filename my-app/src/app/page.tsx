@@ -1,7 +1,35 @@
+'use client'
+import { useState } from "react";
 
 export default function Home() {
-  const baseURL = "https://source.unsplash.com/random/20x20/?hiphop"
-  const baseURL2 = "https://source.unsplash.com/random/20x20/?rap"
+  const [emailTO, setEmailTO] = useState('jhomjom@gmail.com')
+  
+  const sendMail = async () => {
+   console.log('sendMail')
+
+    try {
+      const response = await fetch('/api/sendEmail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({emailTO, subject: 'Alura NewsLetter', }),  
+      });
+
+      if (response.ok) {
+        console.log('Email sent successfully');
+        // Handle success as needed
+      } else {
+        console.error('Failed to send email');
+        // Handle failure as needed
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+      // Handle error as needed
+    }
+  };
+  
+
   return (
     <>
       <main className="flex px-6 drop-shadow-2xl lg:w-3/4">
@@ -23,7 +51,7 @@ export default function Home() {
             </svg>
             <svg className="w-12 h-12 fill-azul-claro stroke-azul-escuro group-hover:animate-sino" viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
             </svg>
           </div>
 
@@ -32,10 +60,14 @@ export default function Home() {
             <p className="text-xl text-gray-700 mb-2">Mergulhe em uma plataforma que respira tecnologia!</p>
           </div>
 
-          <form>
+          <form onSubmit={sendMail}>
             <label className="text-sm w-full font-bold text-gray-700 mb-2" htmlFor="email">Email</label>
-            <input className="text-sm w-full mb-4 pl-3 py-2 rounded border shadow focus:outline-none hover:border-azul-claro hover:ring-azul-escuro focus:border-azul-escuro focus:ring-1 focus:ring-azul-escuro" id="email" type="email" placeholder="Digite seu endereço de email"/>
-              <button className="font-bold text-white bg-azul-escuro w-full py-2 rounded-full shadow-2xl hover:bg-azul-hover duration-150" type="button">Inscreva-se</button>
+            <input 
+            value={emailTO}
+            onChange={(e)=>{setEmailTO(e.target.value)}}
+            className="text-sm w-full mb-4 pl-3 py-2 rounded border shadow focus:outline-none hover:border-azul-claro hover:ring-azul-escuro focus:border-azul-escuro focus:ring-1 focus:ring-azul-escuro" id="email" type="email" placeholder="Digite seu endereço de email"/>
+            
+              <button onClick={sendMail} className="font-bold text-white bg-azul-escuro w-full py-2 rounded-full shadow-2xl hover:bg-azul-hover duration-150" type="button">Inscreva-se</button>
           </form>
         </section>
       </main>
